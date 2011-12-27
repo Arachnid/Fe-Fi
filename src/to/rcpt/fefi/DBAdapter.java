@@ -519,8 +519,6 @@ public class DBAdapter extends SQLiteOpenHelper {
 			Uri uri = cr.insert(Media.EXTERNAL_CONTENT_URI, values);
 			context.sendBroadcast(new Intent("com.android.camera.NEW_PICTURE", uri));
 			Log.d(TAG, myId + " inserted values to uri " + uri);
-			Vibrator v = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-			v.vibrate(300);
 			return uri;
 		}
 
