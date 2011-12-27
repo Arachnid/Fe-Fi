@@ -73,7 +73,8 @@ public class DBAdapter extends SQLiteOpenHelper {
 				"_id INTEGER PRIMARY KEY AUTOINCREMENT," +
 				"name TEXT," +
 				"uploadKey TEXT NOT NULL," +
-				"macAddress TEXT NOT NULL);");
+				"macAddress TEXT NOT NULL," +
+				"offset INT DEFAULT 0);");
 		db.execSQL("CREATE UNIQUE INDEX macAddress " +
 				"ON " + CARDS + "(macAddress);");
 		db.execSQL("CREATE TABLE " + UPLOADS + " (" +
@@ -84,9 +85,17 @@ public class DBAdapter extends SQLiteOpenHelper {
 				"imageUri TEXT," +
 				"log TEXT," +
 				"status INT," +
-				"path TEXT);");
+				"path TEXT," +
+				"card INT);");
 		db.execSQL("CREATE UNIQUE INDEX fileSignature " +
 				"ON " + UPLOADS + "(fileSignature);");
+		db.execSQL("CREATE TABLE " + LOCATION + " (" +
+				   "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+				   "latitude REAL NOT NULL," +
+				   "longitude REAL NOT NULL," +
+                   "altitude REAL," +
+                   "accuracy REAL," +
+                   "fixtime INT NOT NULL);");
 		Log.e(TAG, "DB creation done");
 	}
 
